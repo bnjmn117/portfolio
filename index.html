@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Advanced Educational Portfolio - Full-stack developer showcasing projects, skills, and secure authentication">
+    <meta name="theme-color" content="#6366f1">
+    <title>Portfolio Pro | Next-Gen Educational Hub</title>
+    
+    <!-- Preconnect for Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Optimized Font Loading with Display Swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 (Minified CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- AOS Animation Library (Performance Optimized) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #0f172a;
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body[data-theme="dark"] {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(100, 116, 139, 0.2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #6366f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f46e5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Advanced Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        body[data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: #0f172a;
+        }
+
+        body[data-theme="dark"] .brand-link {
+            color: #e2e8f0;
+        }
+
+        .brand-accent {
+            color: #6366f1;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #475569;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        body[data-theme="dark"] .nav-link {
+            color: #cbd5e1;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #6366f1;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #6366f1;
+            border-radius: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle, .auth-trigger-btn {
+            background: rgba(99, 102, 241, 0.1);
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle {
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .auth-trigger-btn {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+        }
+
+        .auth-trigger-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #6366f1;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99,102,241,0.3) 0%, rgba(139,92,246,0) 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            left: -100px;
+            top: auto;
+            background: radial-gradient(circle, rgba(236,72,153,0.2) 0%, rgba(236,72,153,0) 70%);
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-video {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation-delay: 0.2s;
+        }
+
+        .hero-video video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 136, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-profile {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #6366f1;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .hero-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #ec489a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        body[data-theme="dark"] .hero-description {
+            color: #94a3b8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Code Widget */
+        .code-widget {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .code-header {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .code-dots span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .code-dots span:nth-child(1) { background: #ff5f56; }
+        .code-dots span:nth-child(2) { background: #ffbd2e; }
+        .code-dots span:nth-child(3) { background: #27c93f; }
+
+        .code-content {
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            color: #a5f3c3;
+            min-height: 300px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background: #6366f1;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 0;
+            background: rgba(248, 250, 252, 0.5);
+            position: relative;
+        }
+
+        body[data-theme="dark"] .about-section {
+            background: rgba(15, 23, 42, 0.3);
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-text {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #6366f1;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #475569;
+        }
+
+        body[data-theme="dark"] .about-text p {
+            color: #94a3b8;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s;
+        }
+
+        body[data-theme="dark"] .highlight-item {
+            background: rgba(15, 23, 42, 0.6);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+        }
+
+        .highlight-item i {
+            font-size: 1.5rem;
+            color: #6366f1;
+        }
+
+        .highlight-item span {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        body[data-theme="dark"] .highlight-item span {
+            color: #e2e8f0;
+        }
+
+        .about-profile-img {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 4px solid #6366f1;
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Grid */
+        .featured-section {
+            padding: 5rem 0;
+        }
+
+        /* Quote Rotator */
+        .quote-rotator {
+            padding: 5rem 0;
+        }
+
+        .quote-card {
+            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.05));
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-mark {
+            font-size: 4rem;
+            color: #6366f1;
+            opacity: 0.3;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+
+        .quote-content p {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Auth Modal */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-modal.active {
+            display: flex;
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 450px;
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        body[data-theme="dark"] .modal-container {
+            background: #1e293b;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            background: none;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .auth-tab.active {
+            border-bottom-color: #6366f1;
+            color: #6366f1;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .input-field {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(99,102,241,0.05);
+            border-radius: 12px;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-field i {
+            color: #6366f1;
+        }
+
+        .input-field input {
+            flex: 1;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .full-width {
+            width: 100%;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .auth-message {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .error { color: #ef4444; }
+        .success { color: #10b981; }
+
+        /* Footer */
+        .footer {
+            background: rgba(15,23,42,0.9);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links, .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a, .footer-social a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 3rem auto;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-message {
+            margin: 1rem 0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .form-message.show {
+            display: block;
+        }
+
+        .form-message.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .about-profile-img {
+                max-width: 250px;
+                height: 250px;
+            }
+            .about-media {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .about-video .video-wrapper {
+                max-width: 100%;
+            }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+            }
+            body[data-theme="dark"] .nav-menu {
+                background: #1e293b;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="#" class="brand-link">
+                    <i class="fas fa-bolt"></i>
+                    <span>Portfolio</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#" class="nav-link" id="navContactBtn">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                    <button class="auth-trigger-btn" id="authTriggerBtn"><i class="fas fa-user-circle"></i><span>Sign In</span></button>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-background"><div class="gradient-orb"></div><div class="gradient-orb orb-2"></div></div>
+            <div class="container hero-container">
+                <div class="hero-content" data-aos="fade-up">
+                    <div class="hero-badge"><i class="fas fa-user-graduate"></i><span>Hard Working Student</span></div>
+                    <div class="hero-profile">
+                        <img src="uplouds/fee74125-db7d-46aa-bc7f-e8a30095c3a1.jpg" alt="Profile Picture" class="hero-image">
+                        <div class="hero-name">Christian Benjamin A. Rigor</div>
+                    </div>
+                    <p class="hero-description">“Isolate as much as you want to become stronger, even if you see that loneliness is an unbearable hell, it is much better than the multiple masks of humans” - Fyodor Dostoevsky</p>
+                    <div class="hero-cta"><a href="https://open.spotify.com" target="_blank" class="btn btn-primary"><span>Listen on Spotify</span><i class="fab fa-spotify"></i></a><a href="#" class="btn btn-secondary" id="contactTriggerBtn"><i class="fas fa-paper-plane"></i><span>Contact Me</span></a></div>
+                </div>
+                <div class="hero-video" data-aos="fade-left">
+                    <video controls loop width="100%" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 136, 255, 0.2);">
+                        <source src="uplouds/arcane.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                </div>
+            </div></section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About Me</h2>
+                    <p>Get to know more about my journey and passion</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text" data-aos="fade-up">
+                        <h3>Hello! I'm Christian Benjamin A. Rigor</h3>
+                        <p>I'm a dedicated and hardworking student with a passion for technology and education. My journey in the world of programming and web development began with curiosity and has evolved into a deep commitment to creating meaningful digital experiences.</p>
+                        <p>As a student, I believe in the power of continuous learning and growth. I'm always eager to take on new challenges, collaborate with others, and contribute to projects that make a positive impact in the educational technology space.</p>
+                    </div>
+                </div>
+                </div>
+            </div></section>
+
+        <section id="projects" class="featured-section"><div class="container"><div class="section-header"><h2>My Projects</h2></div><div class="projects-grid"><div class="project-card" data-aos="fade-up"><div class="project-icon"><i class="fas fa-shield-alt"></i></div><h3>Advanced Login</h3><p class="project-tech">HTML &bull; CSS &bull; JavaScript</p><p>A secure, feature-rich authentication system with login, registration, validation, and session management built from scratch.</p><button class="project-link">View Project <i class="fas fa-arrow-right"></i></button></div><div class="project-card" data-aos="fade-up" data-aos-delay="100"><div class="project-icon" style="background: linear-gradient(135deg, #f59e0b, #ec4899);"><i class="fas fa-book-open"></i></div><h3>Story Book</h3><p class="project-tech">HTML &bull; CSS &bull; JavaScript</p><p>An interactive digital storybook platform where users can read and explore richly styled narrative content in a clean, immersive layout.</p><button class="project-link">View Project <i class="fas fa-arrow-right"></i></button></div><div class="project-card" data-aos="fade-up" data-aos-delay="200"><div class="project-icon" style="background: linear-gradient(135deg, #14b8a6, #6366f1);"><i class="fas fa-layer-group"></i></div><h3>Advanced Portfolio</h3><p class="project-tech">HTML &bull; CSS &bull; JavaScript</p><p>A next-generation personal portfolio with dark mode, animations, an auth modal, quote rotator, and responsive design throughout.</p><button class="project-link">View Project <i class="fas fa-arrow-right"></i></button></div></div></div></section>
+
+        <section class="quote-rotator"><div class="container"><div class="quote-card"><i class="fas fa-quote-right quote-mark"></i><div class="quote-content"><p id="rotatingQuote">Loading wisdom...</p><span id="quoteAuthor" class="quote-author"></span></div><button class="quote-refresh btn btn-secondary" id="refreshQuote"><i class="fas fa-sync-alt"></i><span>New Insight</span></button></div></div></section>
+
+    
+
+
+    </main>
+
+    <div class="auth-modal" id="authModal"><div class="modal-backdrop"></div><div class="modal-container"><div class="modal-header"><h3>Hello good day!</h3><button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button></div><div class="modal-body"><div class="auth-tabs"><button class="auth-tab active" data-auth="login">Login</button><button class="auth-tab" data-auth="register">Register</button></div><form id="loginForm" class="auth-form active"><div class="input-field"><i class="fas fa-envelope"></i><input type="email" id="loginEmail" placeholder="Email"></div><div class="input-field"><i class="fas fa-lock"></i><input type="password" id="loginPassword" placeholder="Password"></div><button type="submit" class="btn btn-primary full-width">Sign In <i class="fas fa-arrow-right"></i></button><div class="auth-message" id="loginMessage"></div><div class="demo-credentials" style="margin-top:1rem;font-size:0.85rem;"><i class="fas fa-flask"></i> Demo: any@email.com / demo123</div></form><form id="registerForm" class="auth-form"><div class="input-field"><i class="fas fa-user"></i><input type="text" id="regName" placeholder="Full Name"></div><div class="input-field"><i class="fas fa-envelope"></i><input type="email" id="regEmail" placeholder="Email"></div><div class="input-field"><i class="fas fa-lock"></i><input type="password" id="regPassword" placeholder="Password"></div><div class="input-field"><i class="fas fa-check-circle"></i><input type="password" id="regConfirm" placeholder="Confirm Password"></div><button type="submit" class="btn btn-primary full-width">Create Account <i class="fas fa-user-plus"></i></button><div class="auth-message" id="registerMessage"></div></form></div></div></d
+
+    <footer class="footer"><div class="container"><div class="footer-content"><div class="footer-info"><h4>Portfolio Pro</h4><p>Building the future of education through technology</p></div><div class="footer-links"><a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div><div class="footer-social"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div></div></div></footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 100, duration: 800 });
+        
+        // Quotes
+        const quotes=[{text:"To remain yourself in a world that pressures you to conform is a quiet, constant battle.",author:"Friedrich Nietzsche"},{text:"Only in solitude can a person exist without pretending.",author:"Arthur Schopenhauer"},{text:"The inability to face oneself in silence is the root of many human troubles.",author:"Blaise Pascal"},{text:"We are born free, yet slowly shaped into what the world expects us to be.",author:"Jean-Jacques Rousseau"},{text:"Truth fades when we lose ourselves in the voice of the crowd.",author:"Søren Kierkegaard"},{text:"The greatest journey in life is becoming who you truly are.",author:"Carl Jung"},{text:"A life with purpose can endure even the heaviest suffering.",author:"Friedrich Nietzsche"},{text:"Master your mind, and you will find strength no chaos can take away.",author:"Marcus Aurelius"},{text:"Your power lies not in events, but in your response to them.",author:"Epictetus"},{text:"Even in your darkest moments, something within you refuses to break.",author:"Albert Camus"},{text:"Life is understood in reflection, but it must be lived without certainty.",author:"Søren Kierkegaard"}];
+        let qIdx=0; const qEl=document.getElementById('rotatingQuote'),aEl=document.getElementById('quoteAuthor'); function upd(){ const q=quotes[qIdx%quotes.length]; if(qEl&&aEl){ qEl.style.opacity='0'; setTimeout(()=>{ qEl.textContent=`"${q.text}"`; aEl.textContent=`— ${q.author}`; qEl.style.opacity='1'; },300); } qIdx++; } document.getElementById('refreshQuote')?.addEventListener('click',upd); upd();
+        
+        // Theme
+        const theme=localStorage.getItem('theme')||'light'; document.body.setAttribute('data-theme',theme); const tt=document.getElementById('themeToggle'); tt.innerHTML=theme==='dark'?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>'; tt.onclick=()=>{ const cur=document.body.getAttribute('data-theme'); const nxt=cur==='dark'?'light':'dark'; document.body.setAttribute('data-theme',nxt); localStorage.setItem('theme',nxt); tt.innerHTML=nxt==='dark'?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>'; };
+        
+        // Auth Modal
+        const modal=document.getElementById('authModal'),trigger=document.getElementById('authTriggerBtn'),closeModal=document.getElementById('closeModal'); trigger.onclick=()=>modal.classList.add('active'); closeModal.onclick=()=>modal.classList.remove('active'); modal.onclick=e=>{if(e.target===modal)modal.classList.remove('active');};        const contactModal=document.getElementById('contactModal'),contactTrigger=document.getElementById('contactTriggerBtn'),navContactBtn=document.getElementById('navContactBtn'),contactClose=document.getElementById('contactModalClose'); contactTrigger.onclick=(e)=>{e.preventDefault(); contactModal.classList.add('active');}; navContactBtn.onclick=(e)=>{e.preventDefault(); contactModal.classList.add('active');}; contactClose.onclick=()=>contactModal.classList.remove('active'); contactModal.onclick=e=>{if(e.target===contactModal)contactModal.classList.remove('active');};
+        document.getElementById('loginForm').onsubmit=e=>{ e.preventDefault(); const email=document.getElementById('loginEmail').value,pwd=document.getElementById('loginPassword').value; if(!email||!pwd) return document.getElementById('loginMessage').innerHTML='<span class="error">❌ All fields required</span>'; const users=JSON.parse(localStorage.getItem('registeredUsers')||'[]'); const user=users.find(u=>u.email===email&&u.password===pwd); if(user||pwd==='demo123'){ document.getElementById('loginMessage').innerHTML='<span class="success">✅ Authentication successful!</span>'; setTimeout(()=>{ modal.classList.remove('active'); trigger.innerHTML='<i class="fas fa-user-check"></i><span>Dashboard</span>'; },1000); } else document.getElementById('loginMessage').innerHTML='<span class="error">❌ Invalid credentials. Use demo123 or register first</span>'; };
+        document.getElementById('registerForm').onsubmit=e=>{ e.preventDefault(); const name=document.getElementById('regName').value,email=document.getElementById('regEmail').value,pwd=document.getElementById('regPassword').value,conf=document.getElementById('regConfirm').value; if(!name||!email||!pwd||!conf) return document.getElementById('registerMessage').innerHTML='<span class="error">❌ All fields required</span>'; if(pwd.length<8) return document.getElementById('registerMessage').innerHTML='<span class="error">❌ Password min 8 chars</span>'; if(pwd!==conf) return document.getElementById('registerMessage').innerHTML='<span class="error">❌ Passwords do not match</span>'; const users=JSON.parse(localStorage.getItem('registeredUsers')||'[]'); if(users.some(u=>u.email===email)) return document.getElementById('registerMessage').innerHTML='<span class="error">❌ Email already registered</span>'; users.push({name,email,password:pwd}); localStorage.setItem('registeredUsers',JSON.stringify(users)); document.getElementById('registerMessage').innerHTML='<span class="success">✅ Registration successful! Please login.</span>'; setTimeout(()=>{ document.querySelector('.auth-tab[data-auth="login"]').click(); document.getElementById('registerForm').reset(); },1500); };
+        document.querySelectorAll('.auth-tab').forEach(tab=>{ tab.onclick=()=>{ document.querySelectorAll('.auth-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); document.querySelectorAll('.auth-form').forEach(f=>f.classList.remove('active')); document.getElementById(`${tab.dataset.auth}Form`).classList.add('active'); }; });
+        
+        // Contact Form
+        const contactForm = document.getElementById('contactForm');
+        const contactFormMessage = document.getElementById('contactMessage');
+        
+        if (contactForm) {
+            contactForm.onsubmit = async (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('contactName').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                const subject = document.getElementById('contactSubject').value.trim();
+                const message = document.getElementById('contactMsg').value.trim();
+                
+                // Validation
+                if (!name || !email || !subject || !message) {
+                    contactFormMessage.innerHTML = '? All fields are required';
+                    contactFormMessage.classList.add('show', 'error');
+                    setTimeout(() => contactFormMessage.classList.remove('show', 'error'), 4000);
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    contactFormMessage.innerHTML = '? Please enter a valid email';
+                    contactFormMessage.classList.add('show', 'error');
+                    setTimeout(() => contactFormMessage.classList.remove('show', 'error'), 4000);
+                    return;
+                }
+                
+                try {
+                    // Send data to Formspree (change this to your email)
+                    const response = await fetch('https://formspree.io/f/xyzabcd', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, subject, message })
+                    });
+                    
+                    if (response.ok) {
+                        contactFormMessage.innerHTML = '? Message sent successfully! I will get back to you soon.';
+                        contactFormMessage.classList.add('show', 'success');
+                        contactForm.reset();
+                        setTimeout(() => contactFormMessage.classList.remove('show', 'success'), 4000);
+                    } else {
+                        contactFormMessage.innerHTML = '? Error sending message. Please try again.';
+                        contactFormMessage.classList.add('show', 'error');
+                        setTimeout(() => contactFormMessage.classList.remove('show', 'error'), 4000);
+                    }
+                } catch (error) {
+                    // Fallback: Store locally and show success message
+                    const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+                    submissions.push({ name, email, subject, message, timestamp: new Date().toISOString() });
+                    localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
+                    
+                    contactFormMessage.innerHTML = '? Message saved! Thank you for reaching out.';
+                    contactFormMessage.classList.add('show', 'success');
+                    contactForm.reset();
+                    setTimeout(() => contactFormMessage.classList.remove('show', 'success'), 4000);
+                    console.log('Contact submissions:', submissions);
+                }
+            };
+        }
+
+        // Navigation Smooth Scrolling
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Mobile Menu
+        const hamburger=document.getElementById('hamburger'),navMenu=document.getElementById('navMenu'); hamburger.onclick=()=>{ hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); };
+    </script>
+</body>
+</html>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
